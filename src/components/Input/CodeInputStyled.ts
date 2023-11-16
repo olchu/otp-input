@@ -58,7 +58,7 @@ export const CodeInputErrorStyled = styled.span`
 export const CodeInputStyled = styled.input<{ isSubmiting: boolean }>`
   border: none;
   text-align: center;
-  background: #ccc;
+  background: #eaeaea;
   border-radius: 12px;
   width: 100%;
   height: 54px;
@@ -78,10 +78,6 @@ export const CodeInputStyled = styled.input<{ isSubmiting: boolean }>`
 
   &:focus {
     outline: none;
-    background: green;
+    background: #ccc;
   }
-
-  ${() => disableBrowserAutofillStyles()};
-
-  animation: ${({ isSubmiting }) => isSubmiting && loading} 2s ease infinite;
 `;

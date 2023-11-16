@@ -1,10 +1,8 @@
 import React, { useCallback } from 'react';
 import './App.css';
-import { ThemeProvider } from '@emotion/react';
 import { CodeInput } from './components/Input';
 
 import { useFormik } from 'formik';
-import { theme } from './theme';
 
 function App() {
   const {
@@ -21,6 +19,8 @@ function App() {
     onSubmit: ({ sms }) => console.log('onSubmit sms=', sms),
   });
 
+  console.log('values', values);
+
   const handleSubmitSms = useCallback(
     () => setTimeout(() => alert('submit')),
     []
@@ -34,23 +34,21 @@ function App() {
   );
 
   return (
-    <ThemeProvider theme={theme}>
-      <div className="App">
-        <h1>Тест OTP кода из смс</h1>
-        <form>
-          <CodeInput
-            onChange={handleChangeSmsCode}
-            name="sms"
-            value={''}
-            label={''}
-            inputCount={5}
-            webOtpApiEnabled
-            focusOnInit
-            onComplete={handleSubmitSms}
-          />
-        </form>
-      </div>
-    </ThemeProvider>
+    <div className="App">
+      <h1>Тест OTP кода из смс</h1>
+      <form>
+        <CodeInput
+          onChange={handleChangeSmsCode}
+          name="sms"
+          value={''}
+          label={''}
+          inputCount={5}
+          webOtpApiEnabled
+          focusOnInit
+          onComplete={handleSubmitSms}
+        />
+      </form>
+    </div>
   );
 }
 
