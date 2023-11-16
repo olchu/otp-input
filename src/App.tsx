@@ -1,25 +1,56 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useCallback } from 'react';
 import './App.css';
+import { ThemeProvider } from '@emotion/react';
+import { CodeInput } from './components/Input';
+
+import { useFormik } from 'formik';
+import { theme } from './theme';
 
 function App() {
+  const {
+    setErrors,
+    setFieldValue,
+    handleSubmit,
+    errors,
+    values,
+    setFormikState,
+  } = useFormik({
+    initialValues: {
+      sms: '',
+    },
+    onSubmit: ({ sms }) => console.log('onSubmit sms=', sms),
+  });
+
+  const handleSubmitSms = useCallback(
+    () => setTimeout(() => alert('submit')),
+    []
+  );
+
+  const handleChangeSmsCode = useCallback(
+    (nextValue: string) => {
+      setFieldValue('sms', nextValue);
+    },
+    [setFieldValue]
+  );
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        <h1>Тест OTP кода из смс</h1>
+        <form>
+          <CodeInput
+            onChange={handleChangeSmsCode}
+            name="sms"
+            value={''}
+            label={''}
+            inputCount={5}
+            webOtpApiEnabled
+            focusOnInit
+            onComplete={handleSubmitSms}
+          />
+        </form>
+      </div>
+    </ThemeProvider>
   );
 }
 
