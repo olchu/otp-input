@@ -99,7 +99,7 @@ export const CodeInput = ({
       console.log('currentIndex', currentIndex);
       console.log('target.value', target.value);
       let newChar = target.value.replace(/\s/g, '');
-      newChar = newChar.substring(newChar.length - 1, 1);
+      // newChar = newChar.substring(newChar.length - 1, 1);
       console.log('after substring', newChar);
       
       if (/\d/g.test(newChar)) {
