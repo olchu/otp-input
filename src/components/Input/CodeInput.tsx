@@ -223,6 +223,7 @@ export const CodeInput = ({
   );
 
   const handleReadOtp = (code: string) => {
+    console.log('handleReadOtp code=',code)
     if (code.length === 0) {
       return;
     }
@@ -231,6 +232,7 @@ export const CodeInput = ({
       currentIndex + code.length > inputCount - 1
         ? inputCount - 1
         : currentIndex + code.length;
+        
     const outputValue = replaceAt(
       value.slice(0, currentIndex),
       currentIndex,

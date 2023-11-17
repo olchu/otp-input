@@ -28,6 +28,7 @@ function App() {
 
   const handleChangeSmsCode = useCallback(
     (nextValue: string) => {
+      console.log('nextValue', nextValue);
       setFieldValue('sms', nextValue);
     },
     [setFieldValue]
