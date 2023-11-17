@@ -40,7 +40,7 @@ function App() {
         <CodeInput
           onChange={handleChangeSmsCode}
           name="sms"
-          value={''}
+          value={values.sms}
           label={''}
           inputCount={5}
           webOtpApiEnabled
