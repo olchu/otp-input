@@ -95,12 +95,13 @@ export const CodeInput = ({
 
   const handleInputChange = useCallback(
     ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+      console.log('target.value', target.value);
       let newChar = target.value.replace(/\s/g, '');
       newChar = newChar.substring(newChar.length - 1, 1);
 
       if (/\d/g.test(newChar)) {
         const outputValue = replaceAt(value, currentIndex, newChar);
-
+        
         onChange(outputValue);
 
         if (currentIndex < inputCount - 1) {
@@ -223,7 +224,7 @@ export const CodeInput = ({
   );
 
   const handleReadOtp = (code: string) => {
-    console.log('handleReadOtp code=',code)
+    console.log('handleReadOtp code=', code);
     if (code.length === 0) {
       return;
     }
@@ -232,7 +233,7 @@ export const CodeInput = ({
       currentIndex + code.length > inputCount - 1
         ? inputCount - 1
         : currentIndex + code.length;
-        
+
     const outputValue = replaceAt(
       value.slice(0, currentIndex),
       currentIndex,
@@ -267,7 +268,6 @@ export const CodeInput = ({
             data-index={index}
             value={value[index] || ''}
             onInput={handleInputChange}
-            onChange={() => {}}
             onKeyDown={handleKeyDown}
             onFocus={handleFocus}
             onBlur={handleBlur}
