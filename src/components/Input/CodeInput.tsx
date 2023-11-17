@@ -95,17 +95,22 @@ export const CodeInput = ({
 
   const handleInputChange = useCallback(
     ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+      console.log('*********************');
+      console.log('currentIndex', currentIndex);
       console.log('target.value', target.value);
       let newChar = target.value.replace(/\s/g, '');
       newChar = newChar.substring(newChar.length - 1, 1);
-
+      console.log('after substring', newChar);
+      
       if (/\d/g.test(newChar)) {
         const outputValue = replaceAt(value, currentIndex, newChar);
+        console.log('outputValue', outputValue);
         
         onChange(outputValue);
-
+        
         if (currentIndex < inputCount - 1) {
           const nextIndex = currentIndex + 1;
+          console.log('nextIndex', nextIndex);
           inputs?.current[nextIndex]?.focus();
           setCurrentIndex(nextIndex);
         } else {
